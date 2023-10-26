@@ -7,8 +7,19 @@ jobs:
       - image: reiniscirpons/hpcombi-env-arm64v8:v1
     resource_class: arm.medium
     steps:
+      - checkout
       - run:
-          name: The First Step
+          name: Run cmake
           command: |
-            echo 'Hello World!'
-            echo "Test"
+            mkdir build
+            cd build
+            cmake -DBUILD_TESTING=1 ..
+      - run:
+          name: Run make in tests folder
+          command: |
+            cd tests
+            make
+      - run:
+          name: Run tests
+          command: |
+            make test
