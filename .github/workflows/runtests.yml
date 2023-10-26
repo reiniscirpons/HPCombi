@@ -6,8 +6,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-   tests:
-      name: "ubuntu-latest | g++"
+   test-amd64:
+      name: "ubuntu-latest | g++ | amd64"
       timeout-minutes: 60
       runs-on: ubuntu-latest
       env:
@@ -36,3 +36,13 @@ jobs:
               cd tests
               make
               ./test_all
+
+   test-arm64:
+      name: "ubuntu-latest | g++ | arm64"
+      timeout-minutes: 60
+      runs-on: ubuntu-latest
+      steps:
+         - name: "Run CircleCI job"
+           uses: circleci/trigger_circleci_pipeline@v1.0
+           env:
+             CCI_TOKEN: $

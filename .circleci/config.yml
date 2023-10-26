@@ -1,8 +1,22 @@
 # .circleci/config.yml
 
 version: 2.1
+parameters:
+  GHA_Event:
+    type: string
+    default: ""
+  GHA_Actor:
+    type: string
+    default: ""
+  GHA_Action:
+    type: string
+    default: ""
+  GHA_Meta:
+    type: string
+    default: ""
+
 jobs:
-  build:
+  test:
     docker:
       - image: reiniscirpons/hpcombi-env-arm64v8:v1
     resource_class: arm.medium
@@ -24,3 +38,9 @@ jobs:
           command: |
             cd build/tests
             ./test_all
+
+workflows:
+  test:
+    when: << pipeline.parameters.GHA_Action >>
+    jobs:
+      - test
