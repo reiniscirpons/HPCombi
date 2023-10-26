@@ -43,7 +43,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
          - name: "Run CircleCI job"
-           id: "1"
+           id: "circleci_1"
            uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.1.0
            env:
              CCI_TOKEN: ${{ secrets.CCI_TOKEN }}
