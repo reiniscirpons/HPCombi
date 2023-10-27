@@ -41,6 +41,6 @@ jobs:
 
 workflows:
   test:
-    when: << pipeline.parameters.GHA_Action >>
+    #when: << pipeline.parameters.GHA_Action >>
     jobs:
       - test
