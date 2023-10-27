@@ -36,16 +36,3 @@ jobs:
               cd tests
               make
               ./test_all
-
-   test-arm64:
-      name: "ubuntu-latest | g++ | arm64"
-      timeout-minutes: 60
-      runs-on: ubuntu-latest
-      steps:
-         - name: "Run CircleCI job"
-           id: "circleci_1"
-           uses: CircleCI-Public/trigger-circleci-pipeline-action@v1.1.0
-           with:
-             target-slug: ${{ vars.CCI_SLUG }}
-           env:
-             CCI_TOKEN: ${{ secrets.CCI_TOKEN }}
